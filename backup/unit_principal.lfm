@@ -1,0 +1,86 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 1037
+  Height = 600
+  Top = 109
+  Width = 800
+  Caption = 'Sistema Hospitalar - Projeto Acadêmico'
+  ClientHeight = 600
+  ClientWidth = 800
+  Menu = MainMenu1
+  LCLVersion = '4.6.0.0'
+  OnCreate = FormCreate
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 42
+    Top = 0
+    Width = 800
+    ButtonHeight = 40
+    ButtonWidth = 90
+    Caption = 'ToolBar1'
+    ShowCaptions = True
+    TabOrder = 0
+    object btnPacientes: TToolButton
+      Left = 1
+      Top = 2
+      Caption = 'Pacientes'
+    end
+    object btnMedicos: TToolButton
+      Left = 91
+      Top = 2
+      Caption = 'Médicos'
+    end
+    object btnSair: TToolButton
+      Left = 181
+      Top = 2
+      Caption = 'Sair'
+      OnClick = btnSairClick
+    end
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 577
+    Width = 800
+    Panels = <>
+  end
+  object MainMenu1: TMainMenu
+    Left = 72
+    Top = 80
+    object MenuItem1: TMenuItem
+      Caption = 'Cadastros'
+      object menuPacientes: TMenuItem
+        Caption = 'Pacientes'
+      end
+      object menuMedicos: TMenuItem
+        Caption = 'Médicos'
+      end
+      object MenuItem4: TMenuItem
+        Caption = '-'
+      end
+      object menuSair: TMenuItem
+        Caption = 'Sair'
+        OnClick = btnSairClick
+      end
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Movimentação'
+      object menuAgenda: TMenuItem
+        Caption = 'Agenda de Consultas'
+        OnClick = menuAgendaClick
+      end
+    end
+  end
+  object Zconexao: TZConnection
+    ControlsCodePage = cCP_UTF8
+    Properties.Strings = (
+      'RawStringEncoding=DB_CP'
+    )
+    AfterConnect = ZconexaoAfterConnect
+    DisableSavepoints = False
+    HostName = 'localhost'
+    Port = 5432
+    Protocol = 'postgresql'
+    Left = 245
+    Top = 289
+  end
+end

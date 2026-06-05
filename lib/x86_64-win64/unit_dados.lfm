@@ -1,0 +1,8 @@
+object data_Module: Tdata_Module
+  Left = 707
+  Height = 240
+  Top = 94
+  Width = 320
+  Caption = 'data_Module'
+  LCLVersion = '4.6.0.0'
+end
