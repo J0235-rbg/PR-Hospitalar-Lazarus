@@ -71,12 +71,12 @@ begin
 
   // Usando o componente zqryGeral que você criou no DataModule
   dmDados.zqryGeral.Close;
-  dmDados.zqryGeral.SQL.Text := 'SELECT id, nome FROM pacientes ORDER BY nome';
+  dmDados.zqryGeral.SQL.Text := 'SELECT id, nome_completo FROM pacientes ORDER BY nome_completo';
   dmDados.zqryGeral.Open;
 
   while not dmDados.zqryGeral.EOF do
   begin
-    cbPacientes.Items.Add(dmDados.zqryGeral.FieldByName('nome').AsString);
+    cbPacientes.Items.Add(dmDados.zqryGeral.FieldByName('nome_completo').AsString);
     IDsPacientes.Add(dmDados.zqryGeral.FieldByName('id').AsInteger);
     dmDados.zqryGeral.Next;
   end;
@@ -87,38 +87,30 @@ end;
 
 procedure TfrmTriagem.btnSalvarTriagemClick(Sender: TObject);
 var
-  IdPaciente: Integer;
-  CorSelecionada: String;
-  Temperatura: Double;
-  Batimentos: Integer;
+  vIdPaciente: Integer;
+  vTemp: Double;
 begin
-  // 1. Validações básicas de interface
-  if cbPacientes.ItemIndex = -1 then
+  // Vamos forçar o paciente 1 por enquanto, até configurarmos a lista de seleção
+  vIdPaciente := 1;
+
+  // ATENÇÃO: Confirme se os nomes dessas caixas (edtTemperatura, edtQueixa, edtPA, edtFC)
+  // são os mesmos que estão no Inspetor de Objetos. Se forem diferentes, o nome no código deve ser igual ao da caixa!
+  vTemp := StrToFloatDef(edtTemp.Text, 36.5);
+
+  // Chama a função enviando os dados validados
+  if dmDados.SalvarTriagem(vIdPaciente, edtQueixa.Text, edtPA.Text, vTemp, cbManchester.Text) then
   begin
-    ShowMessage('Selecione um paciente antes de gravar.');
-    Exit;
-  end;
+    ShowMessage('Triagem gravada com sucesso no PostgreSQL!');
 
-  if cbManchester.ItemIndex = -1 then
+    // Limpando os campos após salvar
+    edtQueixa.Clear;
+    edtPA.Clear;
+    edtTemp.Clear;
+    edtFC.Clear;
+  end
+  else
   begin
-    ShowMessage('Selecione uma classificação de cor.');
-    Exit;
-  end;
-
-  // 2. Preparação dos dados da tela
-  IdPaciente := IDsPacientes[cbPacientes.ItemIndex];
-
-  CorSelecionada := Copy(cbManchester.Text, 1, Pos(' ', cbManchester.Text) - 1);
-  if CorSelecionada = '' then CorSelecionada := cbManchester.Text;
-
-  Temperatura := StrToFloatDef(edtTemp.Text, 36.5);
-  Batimentos  := StrToIntDef(edtFC.Text, 80);
-
-  // 3. O PULO DO GATO: Chamamos a função do DataModule e testamos se deu certo
-  if dmDados.SalvarTriagem(IdPaciente, edtQueixa.Text, edtPA.Text, Temperatura, Batimentos, CorSelecionada) then
-  begin
-    ShowMessage('Triagem realizada com sucesso! Paciente enviado para a fila.');
-    Self.Close;
+    ShowMessage('Atenção: Falha ao tentar gravar a triagem.');
   end;
 end;
 

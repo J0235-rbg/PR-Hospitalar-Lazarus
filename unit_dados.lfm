@@ -1,8 +1,32 @@
-object data_Module: Tdata_Module
-  Left = 707
-  Height = 240
-  Top = 94
-  Width = 320
-  Caption = 'data_Module'
-  LCLVersion = '4.6.0.0'
+object dmDados: TdmDados
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Left = 1093
+  Top = 166
+  Height = 375
+  HorizontalOffset = 855
+  VerticalOffset = 309
+  Width = 500
+  PPI = 120
+  object ZConexao: TZConnection
+    ControlsCodePage = cCP_UTF8
+    Properties.Strings = (
+      'RawStringEncoding=DB_CP'
+    )
+    DisableSavepoints = False
+    HostName = 'localhost'
+    Port = 0
+    Database = 'sismed'
+    User = 'postgres'
+    Password = 'Mepy11280.'
+    Protocol = 'postgresql'
+    Left = 69
+    Top = 100
+  end
+  object zqryGeral: TZQuery
+    Connection = ZConexao
+    Params = <>
+    Left = 230
+    Top = 114
+  end
 end
