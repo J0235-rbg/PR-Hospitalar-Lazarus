@@ -7,10 +7,9 @@ uses
   cthreads,
   {$ENDIF}
   {$IFDEF HASAMSI}
-  Interfaces, // necessário para o LCL
+  Interfaces,
   {$ENDIF}
-  Forms, unit_principal, Interfaces,
-unit_triagem; // O nome aqui deve ser o nome da sua unit
+  Forms, Interfaces, unit_principal, unit_triagem, unit_fila, unit_dados;
 
 {$R *.res}
 
@@ -18,8 +17,8 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
-  // Aqui ele cria o formulário principal
+
+  // Deixamos apenas as telas visuais normais aqui. O dmDados FOI REMOVIDO daqui!
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmTriagem, frmTriagem);
   Application.Run;
 end.

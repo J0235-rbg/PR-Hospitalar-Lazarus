@@ -1,111 +1,112 @@
 object frmTriagem: TfrmTriagem
   Left = 1121
-  Height = 450
+  Height = 562
   Top = 101
-  Width = 550
+  Width = 688
   Caption = 'Triagem - Protocolo de Manchester'
-  ClientHeight = 450
-  ClientWidth = 550
-  LCLVersion = '4.6.0.0'
+  ClientHeight = 562
+  ClientWidth = 688
+  DesignTimePPI = 120
+  LCLVersion = '4.8.0.0'
   OnShow = FormShow
   object Label1: TLabel
-    Left = 24
-    Height = 15
-    Top = 24
-    Width = 105
+    Left = 30
+    Height = 20
+    Top = 30
+    Width = 131
     Caption = 'Selecionar Paciente:'
   end
   object cbPacientes: TComboBox
-    Left = 24
-    Height = 23
-    Top = 48
-    Width = 320
-    ItemHeight = 15
+    Left = 30
+    Height = 28
+    Top = 60
+    Width = 400
+    ItemHeight = 20
     Style = csDropDownList
     TabOrder = 0
   end
   object GroupBox1: TGroupBox
-    Left = 24
-    Height = 160
-    Top = 96
-    Width = 496
+    Left = 30
+    Height = 200
+    Top = 120
+    Width = 620
     Caption = ' Sinais Vitais e Queixa '
-    ClientHeight = 140
-    ClientWidth = 492
+    ClientHeight = 175
+    ClientWidth = 616
     TabOrder = 1
     object Label2: TLabel
-      Left = 16
-      Height = 15
-      Top = 16
-      Width = 88
+      Left = 20
+      Height = 20
+      Top = 20
+      Width = 110
       Caption = 'Queixa Principal:'
     end
     object edtQueixa: TEdit
-      Left = 16
-      Height = 23
-      Top = 35
-      Width = 456
+      Left = 20
+      Height = 28
+      Top = 44
+      Width = 570
       TabOrder = 0
     end
     object Label3: TLabel
-      Left = 16
-      Height = 15
-      Top = 80
-      Width = 84
+      Left = 20
+      Height = 20
+      Top = 100
+      Width = 106
       Caption = 'Pressão Arterial:'
     end
     object edtPA: TEdit
-      Left = 16
-      Height = 23
-      Top = 100
-      Width = 100
+      Left = 20
+      Height = 28
+      Top = 125
+      Width = 125
       TabOrder = 1
       Text = '12/8'
     end
     object Label4: TLabel
-      Left = 144
-      Height = 15
-      Top = 80
-      Width = 94
+      Left = 180
+      Height = 20
+      Top = 100
+      Width = 116
       Caption = 'Temperatura (°C):'
     end
     object edtTemp: TEdit
-      Left = 144
-      Height = 23
-      Top = 100
-      Width = 90
+      Left = 180
+      Height = 28
+      Top = 125
+      Width = 112
       TabOrder = 2
       Text = '36.5'
     end
     object Label5: TLabel
-      Left = 264
-      Height = 15
-      Top = 80
-      Width = 114
+      Left = 330
+      Height = 20
+      Top = 100
+      Width = 141
       Caption = 'Freq. Cardíaca (BPM):'
     end
     object edtFC: TEdit
-      Left = 264
-      Height = 23
-      Top = 100
-      Width = 90
+      Left = 330
+      Height = 28
+      Top = 125
+      Width = 112
       TabOrder = 3
       Text = '80'
     end
   end
   object Label6: TLabel
-    Left = 24
-    Height = 15
-    Top = 275
-    Width = 152
+    Left = 30
+    Height = 20
+    Top = 344
+    Width = 189
     Caption = 'Classificação de Manchester:'
   end
   object cbManchester: TComboBox
-    Left = 24
-    Height = 23
-    Top = 296
-    Width = 200
-    ItemHeight = 15
+    Left = 30
+    Height = 28
+    Top = 370
+    Width = 250
+    ItemHeight = 20
     Items.Strings = (
       'VERMELHO (Emergência)'
       'LARANJA (Muito Urgente)'
@@ -117,10 +118,10 @@ object frmTriagem: TfrmTriagem
     TabOrder = 2
   end
   object btnSalvarTriagem: TButton
-    Left = 24
-    Height = 40
-    Top = 360
-    Width = 160
+    Left = 30
+    Height = 50
+    Top = 450
+    Width = 200
     Caption = 'Gravar Triagem'
     TabOrder = 3
     OnClick = btnSalvarTriagemClick
