@@ -9,7 +9,8 @@ uses
   {$IFDEF HASAMSI}
   Interfaces,
   {$ENDIF}
-  Forms, Interfaces, unit_principal, unit_triagem, unit_fila, unit_dados;
+  Forms, Controls, Interfaces, unit_principal, unit_triagem, unit_fila, unit_dados,
+unit_login, unit_pacientes, unit_usuarios, unit_medicos;
 
 {$R *.res}
 
@@ -20,5 +21,15 @@ begin
 
   // Deixamos apenas as telas visuais normais aqui. O dmDados FOI REMOVIDO daqui!
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.Run;
+  Application.CreateForm(TfrmLogin, FormLogin);
+
+  // O Porteiro: Abre a tela de login e trava o sistema.
+  // Se o resultado for "mrOk" (Senha Certa), ele roda o hospital.
+  if FormLogin.ShowModal = mrOk then
+  begin
+  Application.CreateForm(TfrmPacientes, frmPacientes);
+  Application.CreateForm(TfrmUsuarios, frmUsuarios);
+  Application.CreateForm(TfrmMedicos, frmMedicos);
+    Application.Run;
+  end;
 end.

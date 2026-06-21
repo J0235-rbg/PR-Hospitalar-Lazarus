@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, DB, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  DBGrids, DBCtrls, ZConnection, ZDataset;
+  DBGrids, DBCtrls, ZConnection, ZDataset, unit_pacientes, unit_dados, unit_triagem,
+  unit_fila, unit_usuarios, unit_medicos;
 
 type
 
@@ -16,25 +17,32 @@ type
     DataSource1: TDataSource;
     DBNavigator1: TDBNavigator;
     MainMenu1: TMainMenu;
-    MenuItem1: TMenuItem;
+    menuAtendimentos: TMenuItem;
+    menuTriagem: TMenuItem;
     menuPacientes: TMenuItem;
     menuMedicos: TMenuItem;
+    menuUsuarios: TMenuItem;
+    menuSistema: TMenuItem;
+    menuCadastros: TMenuItem;
+    menuTrocarUsuario: TMenuItem;
     MenuItem2: TMenuItem;
     menuAgenda: TMenuItem;
-    MenuItem4: TMenuItem;
     menuSair: TMenuItem;
     StatusBar1: TStatusBar;
+    StatusBar2: TStatusBar;
     ToolBar1: TToolBar;
-    btnPacientes: TToolButton;
-    btnMedicos: TToolButton;
-    btnSair: TToolButton;
     procedure btnPacientesClick(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
     procedure DBNavigator1Click(Sender: TObject; Button: TDBNavButtonType);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure menuAgendaClick(Sender: TObject);
+    procedure menuCadastrosClick(Sender: TObject);
+    procedure menuMedicosClick(Sender: TObject);
     procedure menuPacientesClick(Sender: TObject);
+    procedure menuTriagemClick(Sender: TObject);
+    procedure menuUsuariosClick(Sender: TObject);
     procedure ZconexaoAfterConnect(Sender: TObject);
   private
 
@@ -46,8 +54,6 @@ var
   frmPrincipal: TfrmPrincipal;
 
 implementation
-
-uses unit_dados, unit_triagem, unit_fila;
 
 {$R *.lfm}
 
@@ -98,6 +104,28 @@ begin
       ShowMessage('Erro ao inicializar conexão dinâmica: ' + E.Message);
   end;
 end;
+
+procedure TfrmPrincipal.FormShow(Sender: TObject);
+begin
+  // 1. O Rodapé de Auditoria: Mostra quem está logado no sistema
+  StatusBar1.SimplePanel := True; // Ativa o modo de texto simples no rodapé
+  StatusBar1.SimpleText := '  Usuário Logado (Perfil): ' + vUsuarioLogadoPerfil;
+
+  // 2. A Catraca de Segurança (RBAC)
+  if vUsuarioLogadoPerfil = 'Enfermeiro' then
+  begin
+    // Bloqueia acessos sensíveis para a enfermagem
+    menuUsuarios.Visible := False;
+    menuMedicos.Visible := False; // Opcional: Enfermeiro geralmente não cadastra médicos
+  end
+  else if vUsuarioLogadoPerfil = 'Administrador' then
+  begin
+    // Libera o cofre todo para o Admin
+    menuUsuarios.Visible := True;
+    menuMedicos.Visible := True;
+  end;
+end;
+
 procedure TfrmPrincipal.menuAgendaClick(Sender: TObject);
 begin
   Application.CreateForm(TfrmFilaMedica, frmFilaMedica);
@@ -108,9 +136,32 @@ begin
   end;
 end; // Corrigido o fechamento aqui!
 
-procedure TfrmPrincipal.menuPacientesClick(Sender: TObject);
+procedure TfrmPrincipal.menuCadastrosClick(Sender: TObject);
 begin
 
+end;
+
+procedure TfrmPrincipal.menuMedicosClick(Sender: TObject);
+begin
+  frmMedicos.ShowModal;
+end;
+
+procedure TfrmPrincipal.menuPacientesClick(Sender: TObject);
+begin
+  frmPacientes.ShowModal;
+end;
+
+procedure TfrmPrincipal.menuTriagemClick(Sender: TObject);
+begin
+  if frmTriagem = nil then
+    Application.CreateForm(TfrmTriagem, frmTriagem);
+
+  frmTriagem.ShowModal;
+end;
+
+procedure TfrmPrincipal.menuUsuariosClick(Sender: TObject);
+begin
+  frmUsuarios.ShowModal;
 end;
 
 procedure TfrmPrincipal.ZconexaoAfterConnect(Sender: TObject);

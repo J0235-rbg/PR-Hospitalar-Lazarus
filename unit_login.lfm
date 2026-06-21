@@ -1,0 +1,51 @@
+object frmLogin: TfrmLogin
+  Left = 780
+  Height = 406
+  Top = 323
+  Width = 620
+  Caption = 'frmLogin'
+  ClientHeight = 406
+  ClientWidth = 620
+  DesignTimePPI = 120
+  Position = poScreenCenter
+  LCLVersion = '4.8.0.0'
+  object Usuario: TLabel
+    Left = 208
+    Height = 20
+    Top = 48
+    Width = 50
+    Caption = 'Usuario'
+  end
+  object Senha: TLabel
+    Left = 352
+    Height = 20
+    Top = 48
+    Width = 40
+    Caption = 'Senha'
+  end
+  object edtUsuario: TEdit
+    Left = 192
+    Height = 28
+    Top = 81
+    Width = 100
+    TabOrder = 0
+  end
+  object edtSenha: TEdit
+    Left = 320
+    Height = 28
+    Top = 81
+    Width = 100
+    EchoMode = emPassword
+    PasswordChar = '*'
+    TabOrder = 1
+  end
+  object btnEntrar: TButton
+    Left = 272
+    Height = 31
+    Top = 145
+    Width = 94
+    Caption = 'btnEntrar'
+    TabOrder = 2
+    OnClick = btnEntrarClick
+  end
+end

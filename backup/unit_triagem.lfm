@@ -1,7 +1,7 @@
 object frmTriagem: TfrmTriagem
-  Left = 1121
+  Left = 1052
   Height = 562
-  Top = 101
+  Top = 154
   Width = 688
   Caption = 'Triagem - Protocolo de Manchester'
   ClientHeight = 562
@@ -16,15 +16,6 @@ object frmTriagem: TfrmTriagem
     Width = 131
     Caption = 'Selecionar Paciente:'
   end
-  object cbPacientes: TComboBox
-    Left = 30
-    Height = 28
-    Top = 60
-    Width = 400
-    ItemHeight = 20
-    Style = csDropDownList
-    TabOrder = 0
-  end
   object GroupBox1: TGroupBox
     Left = 30
     Height = 200
@@ -33,7 +24,7 @@ object frmTriagem: TfrmTriagem
     Caption = ' Sinais Vitais e Queixa '
     ClientHeight = 175
     ClientWidth = 616
-    TabOrder = 1
+    TabOrder = 0
     object Label2: TLabel
       Left = 20
       Height = 20
@@ -115,7 +106,7 @@ object frmTriagem: TfrmTriagem
       'AZUL (Não Urgente)'
     )
     Style = csDropDownList
-    TabOrder = 2
+    TabOrder = 1
   end
   object btnSalvarTriagem: TButton
     Left = 30
@@ -123,7 +114,16 @@ object frmTriagem: TfrmTriagem
     Top = 450
     Width = 200
     Caption = 'Gravar Triagem'
-    TabOrder = 3
+    TabOrder = 2
     OnClick = btnSalvarTriagemClick
+  end
+  object dblcbPaciente: TDBLookupComboBox
+    Left = 32
+    Height = 28
+    Top = 64
+    Width = 560
+    ListFieldIndex = 0
+    LookupCache = False
+    TabOrder = 3
   end
 end

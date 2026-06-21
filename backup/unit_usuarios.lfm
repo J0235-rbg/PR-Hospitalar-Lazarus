@@ -1,0 +1,109 @@
+object frmUsuarios: TfrmUsuarios
+  Left = 316
+  Height = 372
+  Top = 157
+  Width = 770
+  Caption = 'frmUsuarios'
+  ClientHeight = 372
+  ClientWidth = 770
+  DesignTimePPI = 120
+  LCLVersion = '4.8.0.0'
+  object Label1: TLabel
+    Left = 32
+    Height = 20
+    Top = 58
+    Width = 37
+    Caption = 'Login'
+  end
+  object Label2: TLabel
+    Left = 176
+    Height = 20
+    Top = 58
+    Width = 40
+    Caption = 'Senha'
+  end
+  object edtLogin: TEdit
+    Left = 32
+    Height = 28
+    Top = 104
+    Width = 100
+    TabOrder = 0
+  end
+  object edtSenha: TEdit
+    Left = 176
+    Height = 28
+    Top = 104
+    Width = 100
+    EchoMode = emPassword
+    PasswordChar = '*'
+    TabOrder = 1
+    Text = 'edtSenha'
+  end
+  object Label3: TLabel
+    Left = 328
+    Height = 20
+    Top = 58
+    Width = 83
+    Caption = 'Perfil Acesso'
+  end
+  object cbPerfil: TComboBox
+    Left = 328
+    Height = 28
+    Top = 104
+    Width = 125
+    ItemHeight = 20
+    Items.Strings = (
+      'Administrador'
+      'Enfermeiro'
+    )
+    Style = csDropDownList
+    TabOrder = 2
+  end
+  object chkAtivo: TCheckBox
+    Left = 32
+    Height = 24
+    Top = 184
+    Width = 98
+    Caption = 'Conta Ativa'
+    Checked = True
+    State = cbChecked
+    TabOrder = 3
+  end
+  object btnNovo: TButton
+    Left = 176
+    Height = 31
+    Top = 184
+    Width = 94
+    Caption = 'Novo'
+    TabOrder = 4
+    OnClick = btnNovoClick
+  end
+  object btnSalvar: TButton
+    Left = 296
+    Height = 31
+    Top = 184
+    Width = 94
+    Caption = 'Salvar'
+    TabOrder = 5
+    OnClick = btnSalvarClick
+  end
+  object btnExcluir: TButton
+    Left = 416
+    Height = 31
+    Top = 184
+    Width = 94
+    Caption = 'Excluir'
+    TabOrder = 6
+    OnClick = btnExcluirClick
+  end
+  object DBGrid1: TDBGrid
+    Left = 32
+    Height = 125
+    Top = 240
+    Width = 250
+    Color = clWindow
+    Columns = <>
+    DataSource = dmDados.dsUsuarios
+    TabOrder = 7
+  end
+end

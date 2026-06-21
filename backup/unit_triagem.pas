@@ -5,7 +5,8 @@ unit unit_triagem;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, FGL;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
+  DBCtrls, FGL, unit_dados;
 
 type
   TListaIDs = specialize TFPGList<Integer>;
@@ -15,7 +16,7 @@ type
   TfrmTriagem = class(TForm)
     btnSalvarTriagem: TButton;
     cbManchester: TComboBox;
-    cbPacientes: TComboBox;
+    dblcbPaciente: TDBLookupComboBox;
     GroupBox1: TGroupBox;
     edtQueixa: TEdit;
     edtPA: TEdit;
@@ -31,7 +32,6 @@ type
     procedure FormShow(Sender: TObject);
   private
     IDsPacientes: TListaIDs;
-    procedure CarregarPacientes;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -41,9 +41,6 @@ var
   frmTriagem: TfrmTriagem;
 
 implementation
-
-// Vincula o seu menu principal e seu módulo de dados
-uses unit_dados;
 
 {$R *.lfm}
 
@@ -61,28 +58,10 @@ end;
 
 procedure TfrmTriagem.FormShow(Sender: TObject);
 begin
-  CarregarPacientes;
-end;
-
-procedure TfrmTriagem.CarregarPacientes;
-begin
-  cbPacientes.Clear;
-  IDsPacientes.Clear;
-
-  // Usando o componente zqryGeral que você criou no DataModule
-  dmDados.zqryGeral.Close;
-  dmDados.zqryGeral.SQL.Text := 'SELECT id, nome_completo FROM pacientes ORDER BY nome_completo';
-  dmDados.zqryGeral.Open;
-
-  while not dmDados.zqryGeral.EOF do
-  begin
-    cbPacientes.Items.Add(dmDados.zqryGeral.FieldByName('nome').AsString);
-    IDsPacientes.Add(dmDados.zqryGeral.FieldByName('id').AsInteger);
-    dmDados.zqryGeral.Next;
-  end;
-
-  if cbPacientes.Items.Count > 0 then
-    cbPacientes.ItemIndex := 0;
+  dmDados.zqryPacientes.Open;
+  dblcbPaciente.ListSource := dmDados.dsPacientes;
+  dblcbPaciente.ListField  := 'nome_completo';
+  dblcbPaciente.KeyField   := 'id';
 end;
 
 procedure TfrmTriagem.btnSalvarTriagemClick(Sender: TObject);

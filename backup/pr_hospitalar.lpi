@@ -65,6 +65,27 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
       </Unit>
+      <Unit>
+        <Filename Value="unit_login.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmLogin"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unit_pacientes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPacientes"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="unit_usuarios.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmUsuarios"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

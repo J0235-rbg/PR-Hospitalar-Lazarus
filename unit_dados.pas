@@ -12,9 +12,16 @@ type
   { TdmDados }
 
   TdmDados = class(TDataModule)
+    dsMedicos: TDataSource;
+    dsUsuarios: TDataSource;
+    dsPacientes: TDataSource;
     ZConexao: TZConnection;
     zqryGeral: TZQuery;
+    zqryPacientes: TZQuery;
+    zqryUsuarios: TZQuery;
+    zqryMedicos: TZQuery;
     procedure DataModuleCreate(Sender: TObject);
+    procedure dsPacientesDataChange(Sender: TObject; Field: TField);
   private
   public
     // Criamos a assinatura do método aqui para que as telas possam enxergar
@@ -23,6 +30,8 @@ type
 
 var
   dmDados: TdmDados;
+  vUsuarioLogadoId: Integer;
+  vUsuarioLogadoPerfil: String;
 
 implementation
 
@@ -36,6 +45,11 @@ begin
     on E: Exception do
       ShowMessage('Erro crítico ao conectar no banco: ' + E.Message);
   end;
+end;
+
+procedure TdmDados.dsPacientesDataChange(Sender: TObject; Field: TField);
+begin
+
 end;
 
 // A LÓGICA DO BANCO FICA TODA AQUI DENTRO AGORA

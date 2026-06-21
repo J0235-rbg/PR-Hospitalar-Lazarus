@@ -4,8 +4,8 @@ object dmDados: TdmDados
   Left = 1093
   Top = 166
   Height = 375
-  HorizontalOffset = 855
-  VerticalOffset = 309
+  HorizontalOffset = 955
+  VerticalOffset = 325
   Width = 500
   PPI = 120
   object ZConexao: TZConnection
@@ -20,13 +20,50 @@ object dmDados: TdmDados
     User = 'postgres'
     Password = 'Mepy11280.'
     Protocol = 'postgresql'
-    Left = 69
-    Top = 100
+    Left = 32
+    Top = 40
   end
   object zqryGeral: TZQuery
     Connection = ZConexao
     Params = <>
-    Left = 230
-    Top = 114
+    Left = 144
+    Top = 40
+  end
+  object zqryPacientes: TZQuery
+    Connection = ZConexao
+    SQL.Strings = (
+      'SELECT id, nome_completo FROM pacientes ORDER BY nome_completo;'
+    )
+    Params = <>
+    Left = 68
+    Top = 238
+  end
+  object dsPacientes: TDataSource
+    DataSet = zqryPacientes
+    OnDataChange = dsPacientesDataChange
+    Left = 176
+    Top = 238
+  end
+  object zqryUsuarios: TZQuery
+    Connection = ZConexao
+    Params = <>
+    Left = 307
+    Top = 261
+  end
+  object dsUsuarios: TDataSource
+    DataSet = zqryUsuarios
+    Left = 423
+    Top = 261
+  end
+  object dsMedicos: TDataSource
+    DataSet = zqryMedicos
+    Left = 424
+    Top = 80
+  end
+  object zqryMedicos: TZQuery
+    Connection = ZConexao
+    Params = <>
+    Left = 336
+    Top = 80
   end
 end

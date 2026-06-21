@@ -1,0 +1,57 @@
+object frmMedicos: TfrmMedicos
+  Left = 576
+  Height = 407
+  Top = 280
+  Width = 872
+  Caption = 'frmMedicos'
+  ClientHeight = 407
+  ClientWidth = 872
+  DesignTimePPI = 120
+  Position = poScreenCenter
+  LCLVersion = '4.8.0.0'
+  object Nome: TLabel
+    Left = 88
+    Height = 20
+    Top = 82
+    Width = 41
+    Caption = 'Nome'
+  end
+  object Label2: TLabel
+    Left = 216
+    Height = 20
+    Top = 82
+    Width = 44
+    Caption = 'Label2'
+  end
+  object Label3: TLabel
+    Left = 344
+    Height = 20
+    Top = 82
+    Width = 44
+    Caption = 'Label3'
+  end
+  object Edit1: TEdit
+    Left = 61
+    Height = 28
+    Top = 120
+    Width = 100
+    TabOrder = 0
+    Text = 'Edit1'
+  end
+  object Edit2: TEdit
+    Left = 192
+    Height = 28
+    Top = 120
+    Width = 100
+    TabOrder = 1
+    Text = 'Edit2'
+  end
+  object Edit3: TEdit
+    Left = 320
+    Height = 28
+    Top = 120
+    Width = 100
+    TabOrder = 2
+    Text = 'Edit3'
+  end
+end
