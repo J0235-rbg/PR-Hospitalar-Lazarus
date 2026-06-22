@@ -61,7 +61,7 @@ begin
   end;
 
   if MessageDlg('Confirmação', 'Deseja realmente remover o cadastro do Dr(a). ' +
-                dmDados.zqryMedicos.FieldByName('nome').AsString + '?',
+                dmDados.zqryMedicos.FieldByName('nome_completo').AsString + '?',
                 mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
     try
@@ -94,9 +94,9 @@ begin
   try
     dmDados.zqryGeral.Close;
     dmDados.zqryGeral.SQL.Text :=
-      'INSERT INTO medicos (nome, crm, especialidade) VALUES (:nome, :crm, :especialidade)';
+      'INSERT INTO medicos (nome_completo, crm, especialidade) VALUES (:nome_completo, :crm, :especialidade)';
 
-    dmDados.zqryGeral.ParamByName('nome').AsString := edtNome.Text;
+    dmDados.zqryGeral.ParamByName('nome_completo').AsString := edtNome.Text;
     dmDados.zqryGeral.ParamByName('crm').AsString := edtCRM.Text;
     dmDados.zqryGeral.ParamByName('especialidade').AsString := edtEspecialidade.Text;
 
@@ -104,11 +104,10 @@ begin
 
     ShowMessage('Médico cadastrado com sucesso!');
 
-    // Atualiza a tabela na tela
     dmDados.zqryMedicos.Close;
     dmDados.zqryMedicos.Open;
 
-    btnNovoClick(Sender); // Limpa os campos
+    btnNovoClick(Sender); // limpa os campos nome, crm e especialida
   except
     on E: Exception do
       ShowMessage('Erro ao salvar médico: ' + E.Message);

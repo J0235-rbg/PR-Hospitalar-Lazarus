@@ -24,7 +24,6 @@ type
     procedure dsPacientesDataChange(Sender: TObject; Field: TField);
   private
   public
-    // Criamos a assinatura do método aqui para que as telas possam enxergar
     function SalvarTriagem(IdPac: Integer; Sintomas: String; PA: String; Temp: Double; Urgencia: String): Boolean;
   end;
 
@@ -52,14 +51,12 @@ begin
 
 end;
 
-// A LÓGICA DO BANCO FICA TODA AQUI DENTRO AGORA
 function TdmDados.SalvarTriagem(IdPac: Integer; Sintomas: String; PA: String; Temp: Double; Urgencia: String): Boolean;
 begin
   Result := False;
   try
     zqryGeral.Close;
-    // O comando SQL agora usa os nomes EXATOS da sua tabela
-    // Note o uso do NOW() para preencher a data_hora_chegada automaticamente
+    // usei o now() para pegar a data e hora automaticamente
     zqryGeral.SQL.Text :=
       'INSERT INTO triagens (paciente_id, data_hora_chegada, pressao_arterial, temperatura, sintomas_principais, nivel_urgencia) ' +
       'VALUES (:paciente_id, NOW(), :pa, :temp, :sintomas, :urgencia)';
@@ -71,7 +68,7 @@ begin
     zqryGeral.ParamByName('urgencia').AsString     := Urgencia;
 
     zqryGeral.ExecSQL;
-    Result := True; // Sucesso!
+    Result := True;
   except
     on E: Exception do
     begin

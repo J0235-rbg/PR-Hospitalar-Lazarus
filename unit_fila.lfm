@@ -1,22 +1,23 @@
 object frmFilaMedica: TfrmFilaMedica
   Left = 511
-  Height = 450
+  Height = 562
   Top = 107
-  Width = 700
+  Width = 875
   Caption = 'Painel de Atendimento Médico - Fila de Espera'
-  ClientHeight = 450
-  ClientWidth = 700
-  LCLVersion = '4.6.0.0'
+  ClientHeight = 562
+  ClientWidth = 875
+  DesignTimePPI = 120
+  LCLVersion = '4.8.0.0'
   OnShow = FormShow
   object Panel1: TPanel
     Left = 0
-    Height = 60
+    Height = 75
     Top = 0
-    Width = 700
+    Width = 875
     Align = alTop
     Caption = 'Pacientes Aguardando Atendimento (Ordenados por Gravidade)'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -16
+    Font.Height = -20
     Font.Name = 'Segoe UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -26,9 +27,9 @@ object frmFilaMedica: TfrmFilaMedica
   end
   object DBGridFila: TDBGrid
     Left = 0
-    Height = 314
-    Top = 60
-    Width = 700
+    Height = 392
+    Top = 75
+    Width = 875
     Align = alClient
     Color = clWindow
     Columns = <>
@@ -38,27 +39,27 @@ object frmFilaMedica: TfrmFilaMedica
   end
   object Panel2: TPanel
     Left = 0
-    Height = 76
-    Top = 374
-    Width = 700
+    Height = 95
+    Top = 467
+    Width = 875
     Align = alBottom
-    ClientHeight = 76
-    ClientWidth = 700
+    ClientHeight = 95
+    ClientWidth = 875
     TabOrder = 2
     object btnAtender: TButton
-      Left = 24
-      Height = 42
-      Top = 16
-      Width = 184
+      Left = 30
+      Height = 52
+      Top = 20
+      Width = 230
       Caption = 'Chamar / Atender Paciente'
       TabOrder = 0
       OnClick = btnAtenderClick
     end
     object btnAtualizar: TButton
-      Left = 224
-      Height = 42
-      Top = 16
-      Width = 120
+      Left = 280
+      Height = 52
+      Top = 20
+      Width = 150
       Caption = 'Atualizar Fila'
       TabOrder = 1
       OnClick = btnAtualizarClick
@@ -66,12 +67,12 @@ object frmFilaMedica: TfrmFilaMedica
   end
   object dsFila: TDataSource
     DataSet = zqryFila
-    Left = 544
-    Top = 8
+    Left = 680
+    Top = 10
   end
   object zqryFila: TZQuery
     Params = <>
-    Left = 616
-    Top = 8
+    Left = 770
+    Top = 10
   end
 end

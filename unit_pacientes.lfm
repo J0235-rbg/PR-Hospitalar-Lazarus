@@ -16,7 +16,6 @@ object frmPacientes: TfrmPacientes
     Top = 59
     Width = 100
     TabOrder = 0
-    Text = 'edtNomeCompleto'
   end
   object edtCPF: TEdit
     Left = 183
@@ -24,7 +23,6 @@ object frmPacientes: TfrmPacientes
     Top = 59
     Width = 100
     TabOrder = 1
-    Text = 'edtCPF'
   end
   object edtDataNasc: TEdit
     Left = 319
@@ -32,7 +30,6 @@ object frmPacientes: TfrmPacientes
     Top = 59
     Width = 100
     TabOrder = 2
-    Text = 'edtDataNasc'
   end
   object edtTelefone: TEdit
     Left = 463
@@ -40,7 +37,6 @@ object frmPacientes: TfrmPacientes
     Top = 59
     Width = 100
     TabOrder = 3
-    Text = 'edtTelefone'
   end
   object edtEndereco: TEdit
     Left = 599
@@ -48,7 +44,6 @@ object frmPacientes: TfrmPacientes
     Top = 59
     Width = 100
     TabOrder = 4
-    Text = 'edtEndereco'
   end
   object Label1: TLabel
     Left = 40

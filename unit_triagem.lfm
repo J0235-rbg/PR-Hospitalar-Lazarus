@@ -119,12 +119,14 @@ object frmTriagem: TfrmTriagem
     OnClick = btnSalvarTriagemClick
   end
   object dblcbPaciente: TDBLookupComboBox
-    Left = 32
+    Left = 30
     Height = 28
-    Top = 64
-    Width = 560
+    Top = 66
+    Width = 620
     ListFieldIndex = 0
     LookupCache = False
+    Style = csDropDownList
     TabOrder = 3
+    OnChange = dblcbPacienteChange
   end
 end

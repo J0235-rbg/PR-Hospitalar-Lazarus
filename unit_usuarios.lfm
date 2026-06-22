@@ -101,7 +101,7 @@ object frmUsuarios: TfrmUsuarios
     Left = 32
     Height = 125
     Top = 240
-    Width = 250
+    Width = 478
     Color = clWindow
     Columns = <>
     DataSource = dmDados.dsUsuarios

@@ -5,7 +5,7 @@ unit unit_login;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, md5, unit_dados;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, unit_dados;
 
 type
 
@@ -41,8 +41,6 @@ begin
     Exit;
   end;
 
-  // Removi a variável vSenhaHash e o comando MD5! A consulta agora usa o edtSenha direto.
-
   try
     dmDados.zqryGeral.Close;
     dmDados.zqryGeral.SQL.Text :=
@@ -50,7 +48,7 @@ begin
       'WHERE login = :login AND senha_hash = :senha AND ativo = true';
 
     dmDados.zqryGeral.ParamByName('login').AsString := edtUsuario.Text;
-    // Mandando a senha limpa para comparar no banco
+    // compara senha com a do bd
     dmDados.zqryGeral.ParamByName('senha').AsString := edtSenha.Text;
 
     dmDados.zqryGeral.Open;
@@ -59,7 +57,6 @@ begin
     begin
       ShowMessage('Acesso Autorizado! Bem-vindo, ' + dmDados.zqryGeral.FieldByName('perfil_acesso').AsString);
 
-      // Guarda o crachá
       vUsuarioLogadoId := dmDados.zqryGeral.FieldByName('id').AsInteger;
       vUsuarioLogadoPerfil := dmDados.zqryGeral.FieldByName('perfil_acesso').AsString;
 

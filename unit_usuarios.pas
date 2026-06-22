@@ -40,20 +40,17 @@ implementation
 
 {$R *.lfm}
 
-// Evento OnShow da Tela
-
 procedure TfrmUsuarios.btnNovoClick(Sender: TObject);
 begin
   edtLogin.Clear;
   edtSenha.Clear;
-  cbPerfil.ItemIndex := -1; // Limpa a seleção do combo
-  chkAtivo.Checked := True; // Deixa marcado como ativo por padrão
-  edtLogin.SetFocus; // Coloca o cursor piscando no campo de login
+  cbPerfil.ItemIndex := -1;
+  chkAtivo.Checked := True;
+  edtLogin.SetFocus;
 end;
 
 procedure TfrmUsuarios.btnSalvarClick(Sender: TObject);
 begin
-  // Validação de Campos Obrigatórios
   if (edtLogin.Text = '') or (edtSenha.Text = '') or (cbPerfil.Text = '') then
   begin
     ShowMessage('Atenção: Todos os campos são obrigatórios.');
@@ -75,11 +72,10 @@ begin
 
     ShowMessage('Usuário cadastrado com sucesso!');
 
-    // Atualiza a Grid
     dmDados.zqryUsuarios.Close;
     dmDados.zqryUsuarios.Open;
 
-    // Limpa a tela
+    // limpa os campos do login
     edtLogin.Clear;
     edtSenha.Clear;
     cbPerfil.ItemIndex := -1;
@@ -92,14 +88,12 @@ end;
 
 procedure TfrmUsuarios.btnExcluirClick(Sender: TObject);
 begin
-  // Trava de segurança: verifica se existe alguém selecionado na planilha
   if dmDados.zqryUsuarios.IsEmpty then
   begin
     ShowMessage('Nenhum usuário selecionado para exclusão.');
     Exit;
   end;
 
-  // Caixa de diálogo pedindo confirmação com o nome do usuário
   if MessageDlg('Confirmação', 'Deseja realmente remover o acesso do usuário ' +
                 dmDados.zqryUsuarios.FieldByName('login').AsString + '?',
                 mtConfirmation, [mbYes, mbNo], 0) = mrYes then
@@ -108,13 +102,11 @@ begin
       dmDados.zqryGeral.Close;
       dmDados.zqryGeral.SQL.Text := 'DELETE FROM usuarios WHERE id = :id';
 
-      // Captura o ID da linha selecionada silenciosamente
       dmDados.zqryGeral.ParamByName('id').AsInteger := dmDados.zqryUsuarios.FieldByName('id').AsInteger;
       dmDados.zqryGeral.ExecSQL;
 
       ShowMessage('Usuário removido com sucesso!');
 
-      // Atualiza a grade para o usuário sumir da tela
       dmDados.zqryUsuarios.Close;
       dmDados.zqryUsuarios.Open;
     except

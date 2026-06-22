@@ -24,27 +24,27 @@ object frmLogin: TfrmLogin
     Caption = 'Senha'
   end
   object edtUsuario: TEdit
-    Left = 192
+    Left = 184
     Height = 28
     Top = 81
-    Width = 100
+    Width = 108
     TabOrder = 0
   end
   object edtSenha: TEdit
     Left = 320
     Height = 28
     Top = 81
-    Width = 100
+    Width = 112
     EchoMode = emPassword
     PasswordChar = '*'
     TabOrder = 1
   end
   object btnEntrar: TButton
-    Left = 272
+    Left = 232
     Height = 31
-    Top = 145
-    Width = 94
-    Caption = 'btnEntrar'
+    Top = 152
+    Width = 152
+    Caption = 'Entrar no Sistema'
     TabOrder = 2
     OnClick = btnEntrarClick
   end
